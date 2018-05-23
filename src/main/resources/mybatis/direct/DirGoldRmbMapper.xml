@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hywl.cck.direct.mapper.DirGoldRmbMapper" >
+  <resultMap id="BaseResultMap" type="com.hywl.cck.direct.entity.DirGoldRmb" >
+    <id column="gift_gold_id" property="giftGoldId" jdbcType="VARCHAR" />
+    <result column="gift_gold" property="giftGold" jdbcType="DOUBLE" />
+    <result column="gift_rmb" property="giftRmb" jdbcType="DOUBLE" />
+    <result column="grade_vip" property="gradeVip" jdbcType="INTEGER" />
+    <result column="integral" property="integral" jdbcType="VARCHAR" />
+    <result column="all_integral" property="allIntegral" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gift_gold_id, gift_gold, gift_rmb, grade_vip, integral, all_integral, create_time, 
+    modify_time, create_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dir_gold_rmb
+    where gift_gold_id = #{giftGoldId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dir_gold_rmb
+    where gift_gold_id = #{giftGoldId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hywl.cck.direct.entity.DirGoldRmb" >
+    insert into dir_gold_rmb (gift_gold_id, gift_gold, gift_rmb, 
+      grade_vip, integral, all_integral, 
+      create_time, modify_time, create_by
+      )
+    values (#{giftGoldId,jdbcType=VARCHAR}, #{giftGold,jdbcType=DOUBLE}, #{giftRmb,jdbcType=DOUBLE}, 
+      #{gradeVip,jdbcType=INTEGER}, #{integral,jdbcType=VARCHAR}, #{allIntegral,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hywl.cck.direct.entity.DirGoldRmb" >
+    insert into dir_gold_rmb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="giftGoldId != null" >
+        gift_gold_id,
+      </if>
+      <if test="giftGold != null" >
+        gift_gold,
+      </if>
+      <if test="giftRmb != null" >
+        gift_rmb,
+      </if>
+      <if test="gradeVip != null" >
+        grade_vip,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="allIntegral != null" >
+        all_integral,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="giftGoldId != null" >
+        #{giftGoldId,jdbcType=VARCHAR},
+      </if>
+      <if test="giftGold != null" >
+        #{giftGold,jdbcType=DOUBLE},
+      </if>
+      <if test="giftRmb != null" >
+        #{giftRmb,jdbcType=DOUBLE},
+      </if>
+      <if test="gradeVip != null" >
+        #{gradeVip,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="allIntegral != null" >
+        #{allIntegral,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hywl.cck.direct.entity.DirGoldRmb" >
+    update dir_gold_rmb
+    <set >
+      <if test="giftGold != null" >
+        gift_gold = #{giftGold,jdbcType=DOUBLE},
+      </if>
+      <if test="giftRmb != null" >
+        gift_rmb = #{giftRmb,jdbcType=DOUBLE},
+      </if>
+      <if test="gradeVip != null" >
+        grade_vip = #{gradeVip,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="allIntegral != null" >
+        all_integral = #{allIntegral,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gift_gold_id = #{giftGoldId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hywl.cck.direct.entity.DirGoldRmb" >
+    update dir_gold_rmb
+    set gift_gold = #{giftGold,jdbcType=DOUBLE},
+      gift_rmb = #{giftRmb,jdbcType=DOUBLE},
+      grade_vip = #{gradeVip,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=VARCHAR},
+      all_integral = #{allIntegral,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR}
+    where gift_gold_id = #{giftGoldId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectGoldRmbList" resultType="java.util.Map" parameterType="java.util.Map">
+  	
+  	select gift_gold_id giftGoldId,gift_gold giftGold,gift_rmb giftRmb,integral integral,grade_vip gradeVip from dir_gold_rmb
+  	
+  </select>
+</mapper>

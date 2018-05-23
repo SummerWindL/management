@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hywl.cck.game.mapper.GameListMapper" >
+  <resultMap id="BaseResultMap" type="com.hywl.cck.game.entity.GameList" >
+    <id column="game_id" property="gameId" jdbcType="VARCHAR" />
+    <result column="game_type" property="gameType" jdbcType="INTEGER" />
+    <result column="game_name" property="gameName" jdbcType="VARCHAR" />
+    <result column="game_logo" property="gameLogo" jdbcType="VARCHAR" />
+    <result column="game_description" property="gameDescription" jdbcType="VARCHAR" />
+    <result column="game_link" property="gameLink" jdbcType="VARCHAR" />
+    <result column="game_images" property="gameImages" jdbcType="VARCHAR" />
+    <result column="game_play" property="gamePlay" jdbcType="VARCHAR" />
+    <result column="game_package" property="gamePackage" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    game_id, game_type, game_name, game_logo, game_description, game_link, game_images,
+    game_play,game_package,create_time, modify_time,create_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from game_list
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from game_list
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hywl.cck.game.entity.GameList" >
+    insert into game_list (game_id, game_type, game_name,
+    game_logo, game_description, game_link,
+    game_images, game_play,game_package, create_time,
+    modify_time, create_by)
+    values (#{gameId,jdbcType=VARCHAR}, #{gameType,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR},
+    #{gameLogo,jdbcType=VARCHAR}, #{gameDescription,jdbcType=VARCHAR}, #{gameLink,jdbcType=VARCHAR},
+    #{gameImages,jdbcType=VARCHAR}, #{gamePlay,jdbcType=VARCHAR},#{gamePackage,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{modifyTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hywl.cck.game.entity.GameList" >
+    insert into game_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="gameType != null" >
+        game_type,
+      </if>
+      <if test="gameName != null" >
+        game_name,
+      </if>
+      <if test="gameLogo != null" >
+        game_logo,
+      </if>
+      <if test="gameDescription != null" >
+        game_description,
+      </if>
+      <if test="gameLink != null" >
+        game_link,
+      </if>
+      <if test="gameImages != null" >
+        game_images,
+      </if>
+      <if test="gamePlay != null" >
+        game_play,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gameId != null" >
+        #{gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="gameType != null" >
+        #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="gameName != null" >
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameLogo != null" >
+        #{gameLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="gameDescription != null" >
+        #{gameDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="gameLink != null" >
+        #{gameLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameImages != null" >
+        #{gameImages,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePlay != null" >
+        #{gamePlay,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hywl.cck.game.entity.GameList" >
+    update game_list
+    <set >
+      <if test="gameType != null" >
+        game_type = #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="gameName != null" >
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameLogo != null" >
+        game_logo = #{gameLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="gameDescription != null" >
+        game_description = #{gameDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="gameLink != null" >
+        game_link = #{gameLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameImages != null" >
+        game_images = #{gameImages,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePlay != null" >
+        game_play = #{gamePlay,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hywl.cck.game.entity.GameList" >
+    update game_list
+    set game_type = #{gameType,jdbcType=INTEGER},
+      game_name = #{gameName,jdbcType=VARCHAR},
+      game_logo = #{gameLogo,jdbcType=VARCHAR},
+      game_description = #{gameDescription,jdbcType=VARCHAR},
+      game_link = #{gameLink,jdbcType=VARCHAR},
+      game_images = #{gameImages,jdbcType=VARCHAR},
+      game_play = #{gamePlay,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR}
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </update>
+
+
+  <!--获取指定类型的所有游戏-->
+  <select id="getGameInfoList" resultType="Map" parameterType="int">
+    SELECT
+          game_id as gameId,
+          game_name as gameName,
+          game_logo as gameLogo,
+          game_package as gamePackage,
+          game_description as gameDescription
+
+    from game_list
+
+
+    where game_type=#{type}
+
+  </select>
+
+<!--查询所有的游戏信息列表-->
+  <select id="selectAllUser" resultType="Map" parameterType="Map">
+
+    SELECT
+
+            game_id as gameId,
+          CASE game_type
+          WHEN 1 THEN '消除类'
+          WHEN 2 THEN '益智类'
+          WHEN 3 THEN '酷跑类'
+          WHEN 4 THEN '棋牌类'
+          WHEN 5 THEN '养成类'
+          END AS gameType,
+            game_name as gameName ,
+            game_logo as gameLogo ,
+            create_time as createTime ,
+            modify_time as modifyTime ,
+            create_by as createBy
+    FROM game_list
+
+  </select>
+
+
+
+</mapper>

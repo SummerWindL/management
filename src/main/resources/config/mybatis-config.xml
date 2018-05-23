@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!-- ELEMENT configuration (properties?, settings?, typeAliases?, typeHandlers?, 
+    objectFactory?, objectWrapperFactory?, plugins?, environments?, databaseIdProvider?, mappers?) -->
+
+		
+	<!-- mybatis映射文件中所用到的别名配置 -->
+	<typeAliases>
+		<package name="com.hywl.cck.user.entity" />
+		<package name="com.hywl.cck.sys.entity" />
+		<package name="com.hywl.cck.game.entity" />
+		<package name="com.hywl.cck.order.entity" />
+		<package name="com.hywl.cck.chatgroups.entity" />
+		<package name="com.hywl.cck.chat.entity" />
+		<package name="com.hywl.cck.direct.entity" />
+		<package name="com.hywl.cck.cate.entity"/>
+		<package name="com.hywl.cck.goods.entity"/>
+		<package name="com.hywl.cck.food.entity"/>
+		<package name="com.hywl.cck.management.entity"/>
+		<package name="com.hywl.cck.integral.entity"/>
+	</typeAliases>
+
+	<!-- 配置分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+			<property name="dialect" value="mysql"/>
+		</plugin>
+	</plugins>
+</configuration>
+

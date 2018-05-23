@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hywl.cck.shiro.mapper.SysUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hywl.cck.shiro.entity.SysUserInfo" >
+    <id column="user_sn" property="userSn" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="user_status" property="userStatus" jdbcType="CHAR" />
+    <result column="login_count" property="loginCount" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_sn, user_name, password, mobile, email, sex, tel, user_status, login_count,
+    create_time, modify_time, create_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_info
+    where user_sn = #{userSn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_user_info
+    where user_sn = #{userSn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.hywl.cck.shiro.entity.SysUserInfo" >
+    insert into sys_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userSn != null" >
+        user_sn,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="loginCount != null" >
+        login_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userSn != null" >
+        #{userSn,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hywl.cck.shiro.entity.SysUserInfo" >
+    update sys_user_info
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="loginCount != null" >
+        login_count = #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_sn = #{userSn,jdbcType=VARCHAR}
+  </update>
+  <select id="getSysUserByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user_info
+    where  user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectUserList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT
+    t1.user_name AS userName, t1.mobile, t1.user_sn AS userSn,
+    t1.tel,t1.email,
+    CASE t1.user_status
+    WHEN '0' THEN '启用'
+    WHEN '1' THEN '停用'
+    WHEN '2' THEN '删除'
+    END AS userStatus,
+    t1.login_count AS loginCount,
+    CASE t1.sex
+    WHEN '1' THEN '男'
+    WHEN '2' THEN '女'
+    WHEN '3' THEN '保密'
+    END AS sex
+    FROM sys_user_info AS t1
+    WHERE  1 = 1
+    <if test="userName != null and userName != ''">
+      AND t1.user_name LIKE '%${userName}%'
+    </if>
+    <if test="mobile != null and mobile != ''">
+      AND t1.mobile LIKE '%${mobile}%'
+    </if>
+    <if test="userStatus != null and userStatus != ''">
+      AND t1.user_status = #{userStatus}
+    </if>
+    ORDER BY t1.create_time DESC
+  </select>
+<!--获取角色列表-->
+  <select id="getRoleList" resultType="java.lang.String" parameterType="java.lang.String" >
+    SELECT t1.role_sn AS roleSn
+    FROM sys_user_role AS t1
+    LEFT OUTER JOIN sys_role AS t2
+    ON t1.role_sn = t2.role_sn
+    WHERE
+    1 = 1
+    AND t1.user_sn = #{userSn}
+    AND t2.role_status = '0'
+  </select>
+
+  <!--获取权限列表-->
+  <select id="getPermissonList" resultType="java.lang.String" parameterType="java.lang.String" >
+    SELECT t2.permission_name AS permissionName
+    FROM sys_role_permission AS t1
+    LEFT OUTER JOIN sys_permission AS t2
+    ON t1.permission_sn = t2.permission_sn
+    WHERE 1 = 1
+    AND t1.role_sn IN (
+    <foreach collection="list" item="c" index="index" separator="," >
+      '${c}'
+    </foreach>
+    )
+    GROUP BY t1.permission_sn
+  </select>
+</mapper>

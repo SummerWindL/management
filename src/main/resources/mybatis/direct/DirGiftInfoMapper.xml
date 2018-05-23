@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hywl.cck.direct.mapper.DirGiftInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hywl.cck.direct.entity.DirGiftInfo" >
+    <id column="gift_info_id" property="giftInfoId" jdbcType="VARCHAR" />
+    <result column="gift_image" property="giftImage" jdbcType="VARCHAR" />
+    <result column="gift_gold" property="giftGold" jdbcType="DOUBLE" />
+    <result column="gift_rmb" property="giftRmb" jdbcType="DOUBLE" />
+    <result column="gift_state" property="giftState" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gift_info_id, gift_image, gift_gold, gift_rmb, gift_state, create_time, modify_time, 
+    create_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dir_gift_info
+    where gift_info_id = #{giftInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dir_gift_info
+    where gift_info_id = #{giftInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hywl.cck.direct.entity.DirGiftInfo" >
+    insert into dir_gift_info (gift_info_id, gift_image, gift_gold, 
+      gift_rmb, gift_state, create_time, 
+      modify_time, create_by)
+    values (#{giftInfoId,jdbcType=VARCHAR}, #{giftImage,jdbcType=VARCHAR}, #{giftGold,jdbcType=DOUBLE}, 
+      #{giftRmb,jdbcType=DOUBLE}, #{giftState,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hywl.cck.direct.entity.DirGiftInfo" >
+    insert into dir_gift_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="giftInfoId != null" >
+        gift_info_id,
+      </if>
+      <if test="giftImage != null" >
+        gift_image,
+      </if>
+      <if test="giftGold != null" >
+        gift_gold,
+      </if>
+      <if test="giftRmb != null" >
+        gift_rmb,
+      </if>
+      <if test="giftState != null" >
+        gift_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="giftInfoId != null" >
+        #{giftInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="giftImage != null" >
+        #{giftImage,jdbcType=VARCHAR},
+      </if>
+      <if test="giftGold != null" >
+        #{giftGold,jdbcType=DOUBLE},
+      </if>
+      <if test="giftRmb != null" >
+        #{giftRmb,jdbcType=DOUBLE},
+      </if>
+      <if test="giftState != null" >
+        #{giftState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hywl.cck.direct.entity.DirGiftInfo" >
+    update dir_gift_info
+    <set >
+      <if test="giftImage != null" >
+        gift_image = #{giftImage,jdbcType=VARCHAR},
+      </if>
+      <if test="giftGold != null" >
+        gift_gold = #{giftGold,jdbcType=DOUBLE},
+      </if>
+      <if test="giftRmb != null" >
+        gift_rmb = #{giftRmb,jdbcType=DOUBLE},
+      </if>
+      <if test="giftState != null" >
+        gift_state = #{giftState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gift_info_id = #{giftInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hywl.cck.direct.entity.DirGiftInfo" >
+    update dir_gift_info
+    set gift_image = #{giftImage,jdbcType=VARCHAR},
+      gift_gold = #{giftGold,jdbcType=DOUBLE},
+      gift_rmb = #{giftRmb,jdbcType=DOUBLE},
+      gift_state = #{giftState,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR}
+    where gift_info_id = #{giftInfoId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 查询礼物信息 -->
+  <select id="selectGiftInfoList" resultType="java.util.Map" parameterType="java.util.Map">
+  
+  	select gift_info_id giftInfoId,gift_image giftImage,gift_gold giftGold,gift_rmb giftRmb from dir_gift_info
+   	  	
+  </select>
+  
+</mapper>

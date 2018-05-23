@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.hywl.cck.management.mapper.MerchantInfoMapper">
+                                  
+  <resultMap id="BaseResultMap" type="com.hywl.cck.management.entity.MerchantInfo" >
+    <id column="id" property="id" jdbcType="TINYINT" />
+    <result column="merchant_id" property="merchantId" jdbcType="VARCHAR" />
+    <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
+    <result column="mer_name" property="merName" jdbcType="VARCHAR" />
+    <result column="mer_address" property="merAddress" jdbcType="VARCHAR" />
+    <result column="mer_phone" property="merPhone" jdbcType="VARCHAR" />
+    <result column="mer_password" property="merPassword" jdbcType="VARCHAR" />
+    <result column="mer_idcard" property="merIdcard" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mer_type" property="merType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+     id, merchant_id, link_man, mer_name, mer_address, mer_phone, mer_password,
+    mer_idcard, create_time, mer_type
+  </sql>
+  
+   <select id="getMerchantByPhoneNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_merchant
+    where mer_phone = #{mobileNubmer,jdbcType=VARCHAR}
+  </select>
+  
+  
+    <insert id="registerMerchant" parameterType="com.hywl.cck.management.entity.MerchantInfo" >
+    insert into t_merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="merName != null" >
+        mer_name,
+      </if>
+      <if test="merAddress != null" >
+        mer_address,
+      </if>
+      <if test="merPhone != null" >
+        mer_phone,
+      </if>
+      <if test="merPassword != null" >
+        mer_password,
+      </if>
+      <if test="merIdcard != null" >
+        mer_idcard,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+       <if test="merType != null" >
+        mer_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="merName != null" >
+        #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="merAddress != null" >
+        #{merAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="merPhone != null" >
+        #{merPhone,jdbcType=VARCHAR},
+      </if>
+        <if test="merPassword != null" >
+        #{merPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="merIdcard != null" >
+        #{merIdcard,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merType != null" >
+        #{merType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  </mapper>

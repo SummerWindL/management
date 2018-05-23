@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.hywl.cck.management.mapper.BrankInfoMapper">
+
+  <resultMap id="BaseResultMap" type="com.hywl.cck.management.entity.BrankInfo" >
+    <id column="id" property="id" jdbcType="TINYINT" />
+    <result column="brank_name" property="brankName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modif_time" property="modifTime" jdbcType="TIMESTAMP" />
+    <result column="delet_time" property="deletTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+     id, brank_name, create_time, modif_time, delet_time
+  </sql>
+  
+   <select id="getBrank" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_brank
+    where brank_name = #{brankName,jdbcType=VARCHAR}
+  </select>
+
+
+
+	<delete id="deleteBrank" parameterType="java.lang.String" >
+	  delete 
+	  from t_brank
+	  where brank_name = #{brankName,jdbcType=VARCHAR}
+	</delete>
+   
+
+    <insert id="registerBrank" parameterType="com.hywl.cck.management.entity.BrankInfo" >
+    insert into t_brank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brankName != null" >
+        brank_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifTime != null" >
+        modif_time,
+      </if>
+      <if test="deletTime != null" >
+        delet_time,
+      </if>
+       
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brankName != null" >
+        #{brankName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifTime != null" >
+        #{modifTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletTime != null" >
+        #{deletTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getBrankList" resultType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from t_brank
+    </select>
+  
+</mapper>
